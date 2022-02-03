@@ -32,11 +32,6 @@ all the numbers in an array
 
 The function only needs to work when all the elements are numbers
 
-TEST
-averg([1, 2, 3, 4, 5]); // Expected: 3
-averg([4,2]); // Expected: 3
-averg([-1,1]); // Expected: 0
-
 
 VIDEO:  Record a video where you explain how averg works line by line. Max 3 minutes.
         This video must be called avergExplanation.
@@ -45,10 +40,24 @@ VIDEO:  Record a video where you explain how averg works line by line. Max 3 min
 */
 
 // Copy your earlier function here
-function adder ( _array ) {}
-
-function averg ( _array ) {
-  // in here you must use adder
+function adder ( myArray ) {
+  let sum = 0;
+  for ( let i = 0; i < myArray.length; i++ ) { 
+    sum = sum + myArray[i];
+  }
+  return sum;
 }
+
+function averg ( myArray ) {
+  console.log(adder(myArray) / myArray.length);
+}
+
+averg([1, 2, 3, 4, 5]); // Expected: 3
+averg([4,2]); // Expected: 3
+averg([-1,1]); // Expected: 0
+
+
+
+
 
 
