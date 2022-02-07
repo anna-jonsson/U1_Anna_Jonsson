@@ -52,9 +52,9 @@ VIDEO:  Make a video where you explain how adder works line by line. Max 3 minut
 
 */
 
-function adder ( myArray ) {
+function adder(myArray) {
   let sum = 0;
-  for ( let i = 0; i < myArray.length; i++ ) { 
+  for (let i = 0; i < myArray.length; i++) {
     sum = sum + myArray[i];
   }
   return sum;
