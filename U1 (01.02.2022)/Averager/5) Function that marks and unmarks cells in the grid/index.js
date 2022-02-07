@@ -11,6 +11,41 @@ from the grid by clicking on them.
 
 */
 
+function functSelect(e) {
+    e.classList.toggle("selected");
+}
+
+function createNumberDiv () {
+    let e = document.createElement("div");
+    e.innerHTML = randomNumber(100);
+    e.addEventListener("click", function () {
+        functSelect(e);
+    });
+ 
+    return e;
+ } 
+ 
+ function randomNumber ( max ) {
+     return Math.floor( max * Math.random() );
+ }
+
+
+function gridMaker (gridContainer, R, C) {
+    gridContainer.style.gridTemplateColumns = `repeat(${C}, 1fr)`;
+    gridContainer.style.gridTemplateRows = `repeat(${R}, 1fr)`;
+
+    for (let c = 0; c < C; c++) {
+            for (let r = 0; r < R; r++) {
+                    gridContainer.appendChild(createNumberDiv());
+            }
+    }
+}
+
+document.querySelector("button").addEventListener ("click", function () {
+    gridMaker( document.querySelector("#grid"), document.querySelector("#inputRows").value, document.querySelector("#inputCols").value);
+})
+
+// gridMaker (document.querySelector("#grid"), 10, 10);
 
 /*
 
@@ -20,6 +55,8 @@ Add CSS-rules for .selected to the CSS-file. A change of
 background-color and color is enough but feel free!
 
 */
+
+document.querySelector("#grid").classList.add("selected");
 
 
 /*
