@@ -19,6 +19,50 @@ each time a number is selected or deselected.
 
 */
 
+document.onload = gridMaker(document.querySelector("#grid"), document.querySelector("#inputRows").value, document.querySelector("#inputCols").value);
+window.onload = gridMaker(document.querySelector("#grid"), document.querySelector("#inputRows").value, document.querySelector("#inputCols").value); 
+
+function functSelect(e) {
+    e.classList.toggle("selected");
+}
+
+function createNumberDiv () {
+    let e = document.createElement("div");
+    e.innerHTML = randomNumber(100);
+    e.addEventListener("click", function () {
+        functSelect(e);
+        updateResults("selected");
+    });
+ 
+    return e;
+ } 
+ 
+ function randomNumber ( max ) {
+     return Math.floor( max * Math.random() );
+ }
+
+
+function gridMaker (gridContainer, R, C) {
+    gridContainer.style.gridTemplateColumns = `repeat(${C}, 1fr)`;
+    gridContainer.style.gridTemplateRows = `repeat(${R}, 1fr)`;
+
+    gridContainer.innerHTML = "";
+    document.querySelector("#selected span").innerHTML = ""
+    document.querySelector("#amount span").innerHTML = 0;
+    document.querySelector("#sum span").innerHTML = 0;
+    document.querySelector("#average span").innerHTML = "";
+
+    for (let c = 0; c < C; c++) {
+            for (let r = 0; r < R; r++) {
+                    gridContainer.appendChild(createNumberDiv());
+            }
+    }
+}
+
+document.querySelector("button").addEventListener ("click", function () {
+    gridMaker( document.querySelector("#grid"), document.querySelector("#inputRows").value, document.querySelector("#inputCols").value);
+})
+
 
 
 /*
@@ -67,6 +111,17 @@ function getArrayOfSelectedNumbers (className) {
 }
 
 
+function adder ( myArray ) {
+  let sum = 0;
+  for ( let i = 0; i < myArray.length; i++ ) { 
+    sum = sum + myArray[i];
+  }
+  return sum;
+}
+
+function averg ( myArray ) {
+  return adder(myArray) / myArray.length;
+}
 /*
 
 For this part, we need an array with all the selected numbers.
@@ -85,9 +140,26 @@ to get an updated array of numbers.
 
 
 You must code a function updateResults that accepts parameter (className) and updates
-the results as required. The argument must be the class that selected numberDivs have.
+the results as required. The argument must be the class that selected numberDivs have. */
 
-TEST:
+function updateResults (className) {
+  let array = getArrayOfSelectedNumbers(className);
+
+  let selected = array.join(", ");
+
+  let amount = array.length;
+  let sum = adder(array);
+  let average = roundString(averg(array), 1);
+
+  document.querySelector("#selected span").innerHTML = selected;
+  document.querySelector("#amount span").innerHTML = amount;
+  document.querySelector("#sum span").innerHTML = sum;
+  document.querySelector("#average span").innerHTML = average;
+}
+
+
+
+/* TEST:
 Select a few numbers form the grid.
 Call the function updateResults from the console to see it it works. Don't forget
 to use the correct argument when calling it.
