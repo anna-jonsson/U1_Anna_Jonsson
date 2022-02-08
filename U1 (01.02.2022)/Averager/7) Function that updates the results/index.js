@@ -1,5 +1,4 @@
-"use strict";
-
+'use strict'
 
 /*
 
@@ -19,51 +18,60 @@ each time a number is selected or deselected.
 
 */
 
-document.onload = gridMaker(document.querySelector("#grid"), document.querySelector("#inputRows").value, document.querySelector("#inputCols").value);
-window.onload = gridMaker(document.querySelector("#grid"), document.querySelector("#inputRows").value, document.querySelector("#inputCols").value); 
+document.onload = gridMaker(
+  document.querySelector('#grid'),
+  document.querySelector('#inputRows').value,
+  document.querySelector('#inputCols').value
+)
+window.onload = gridMaker(
+  document.querySelector('#grid'),
+  document.querySelector('#inputRows').value,
+  document.querySelector('#inputCols').value
+)
 
-function functSelect(e) {
-    e.classList.toggle("selected");
+function functSelect (e) {
+  e.classList.toggle('selected')
 }
 
 function createNumberDiv () {
-    let e = document.createElement("div");
-    e.innerHTML = randomNumber(100);
-    e.addEventListener("click", function () {
-        functSelect(e);
-        updateResults("selected");
-    });
- 
-    return e;
- } 
- 
- function randomNumber ( max ) {
-     return Math.floor( max * Math.random() );
- }
+  let e = document.createElement('div')
+  e.innerHTML = randomNumber(100)
+  e.addEventListener('click', function () {
+    functSelect(e)
+    updateResults('selected')
+  })
 
-
-function gridMaker (gridContainer, R, C) {
-    gridContainer.style.gridTemplateColumns = `repeat(${C}, 1fr)`;
-    gridContainer.style.gridTemplateRows = `repeat(${R}, 1fr)`;
-
-    gridContainer.innerHTML = "";
-    document.querySelector("#selected span").innerHTML = ""
-    document.querySelector("#amount span").innerHTML = 0;
-    document.querySelector("#sum span").innerHTML = 0;
-    document.querySelector("#average span").innerHTML = "";
-
-    for (let c = 0; c < C; c++) {
-            for (let r = 0; r < R; r++) {
-                    gridContainer.appendChild(createNumberDiv());
-            }
-    }
+  return e
 }
 
-document.querySelector("button").addEventListener ("click", function () {
-    gridMaker( document.querySelector("#grid"), document.querySelector("#inputRows").value, document.querySelector("#inputCols").value);
+function randomNumber (max) {
+  return Math.floor(max * Math.random())
+}
+
+function gridMaker (gridContainer, R, C) {
+  gridContainer.style.gridTemplateColumns = `repeat(${C}, 1fr)`
+  gridContainer.style.gridTemplateRows = `repeat(${R}, 1fr)`
+
+  gridContainer.innerHTML = ''
+  document.querySelector('#selected span').innerHTML = ''
+  document.querySelector('#amount span').innerHTML = 0
+  document.querySelector('#sum span').innerHTML = 0
+  document.querySelector('#average span').innerHTML = ''
+
+  for (let c = 0; c < C; c++) {
+    for (let r = 0; r < R; r++) {
+      gridContainer.appendChild(createNumberDiv())
+    }
+  }
+}
+
+document.querySelector('button').addEventListener('click', function () {
+  gridMaker(
+    document.querySelector('#grid'),
+    document.querySelector('#inputRows').value,
+    document.querySelector('#inputCols').value
+  )
 })
-
-
 
 /*
 
@@ -86,41 +94,38 @@ The function getArrayOfSelectedNumbers does the following:
 */
 
 function getArrayOfSelectedNumbers (className) {
-
-  // This weird line creates an array with all the numberDivs that have the 
-  // class className. Naturally, when you call this function, you will need 
+  // This weird line creates an array with all the numberDivs that have the
+  // class className. Naturally, when you call this function, you will need
   // to assign a value to className. What value should that be, do you think?
   // The reference to the array is stored in arrayElements
-  let arrayElements = Array.from(document.querySelectorAll("." + className));
+  let arrayElements = Array.from(document.querySelectorAll('.' + className))
 
   // Create a new array and store its reference in arrayNumbers
-  let arrayNumbers = [];
+  let arrayNumbers = []
 
   // Iterate through all the elements in arrayElements.
   // For each numberDiv in arrayElements create a new element in arrayNumbers
   // with the numeric value of the random number.
   for (let i = 0; i < arrayElements.length; i++) {
-    let numberAsString = arrayElements[i].innerHTML;
-    let number = parseInt(numberAsString);
-    arrayNumbers.push(number);
+    let numberAsString = arrayElements[i].innerHTML
+    let number = parseInt(numberAsString)
+    arrayNumbers.push(number)
   }
 
   // Make the array of numbers available outside the function
-  return arrayNumbers;
-
+  return arrayNumbers
 }
 
-
-function adder ( myArray ) {
-  let sum = 0;
-  for ( let i = 0; i < myArray.length; i++ ) { 
-    sum = sum + myArray[i];
+function adder (myArray) {
+  let sum = 0
+  for (let i = 0; i < myArray.length; i++) {
+    sum = sum + myArray[i]
   }
-  return sum;
+  return sum
 }
 
-function averg ( myArray ) {
-  return adder(myArray) / myArray.length;
+function averg (myArray) {
+  return adder(myArray) / myArray.length
 }
 /*
 
@@ -143,21 +148,19 @@ You must code a function updateResults that accepts parameter (className) and up
 the results as required. The argument must be the class that selected numberDivs have. */
 
 function updateResults (className) {
-  let array = getArrayOfSelectedNumbers(className);
+  let array = getArrayOfSelectedNumbers(className)
 
-  let selected = array.join(", ");
+  let selected = array.join(', ')
 
-  let amount = array.length;
-  let sum = adder(array);
-  let average = roundString(averg(array), 1);
+  let amount = array.length
+  let sum = adder(array)
+  let average = roundString(averg(array), 1)
 
-  document.querySelector("#selected span").innerHTML = selected;
-  document.querySelector("#amount span").innerHTML = amount;
-  document.querySelector("#sum span").innerHTML = sum;
-  document.querySelector("#average span").innerHTML = average;
+  document.querySelector('#selected span').innerHTML = selected
+  document.querySelector('#amount span').innerHTML = amount
+  document.querySelector('#sum span').innerHTML = sum
+  document.querySelector('#average span').innerHTML = average
 }
-
-
 
 /* TEST:
 Select a few numbers form the grid.
@@ -189,8 +192,6 @@ VIDEO:  Record a video where you explain what happens on these lines:
 
 
 
-
-
 AMOUNT
 This simply states the number of currently selected numbers.
 Since we have them in an array, it's easy to get their amount... do you
@@ -217,9 +218,12 @@ below to always show a number that has one decimal.
 
 */
 
-function roundString(numberWithManyDecimals, decimals){
+function roundString (numberWithManyDecimals, decimals) {
   // From: https://stackoverflow.com/a/12698296/2027283
-  var rounded = Math.pow(10, decimals);
-  return (Math.round(numberWithManyDecimals * rounded) / rounded).toFixed(decimals);
+  var rounded = Math.pow(10, decimals)
+  return (Math.round(numberWithManyDecimals * rounded) / rounded).toFixed(
+    decimals
+  )
 }
+
 

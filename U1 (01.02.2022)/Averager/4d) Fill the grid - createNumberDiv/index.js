@@ -11,15 +11,16 @@ Note that the newly created div must not be appended inside the function createN
 The must happen outside the function. */
 
 function createNumberDiv () {
-   let e = document.createElement("div");
-   e.innerHTML = randomNumber(100);
+  let e = document.createElement('div')
+  e.innerHTML = randomNumber(100)
 
-   return e;
-} 
-
-function randomNumber ( max ) {
-    return Math.floor( max * Math.random() );
+  return e
 }
+
+function randomNumber (max) {
+  return Math.floor(max * Math.random())
+}
+
 
 
 /* TEST:

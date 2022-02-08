@@ -1,4 +1,4 @@
-"use strict";
+'use strict'
 
 /*
 
@@ -18,12 +18,11 @@ adder_three([2, 1, -2]) should return 1
 
 // function adder_three ( _array ) {
 //   let sum = 0;
-//   for ( let i = 0; i < 3; i++ ) { 
+//   for ( let i = 0; i < 3; i++ ) {
 //     sum = sum + _array[i];
 //   }
 //   return sum;
 // }
-
 
 /*
 
@@ -52,14 +51,14 @@ VIDEO:  Make a video where you explain how adder works line by line. Max 3 minut
 
 */
 
-function adder(myArray) {
-  let sum = 0;
+function adder (myArray) {
+  let sum = 0
   for (let i = 0; i < myArray.length; i++) {
-    sum = sum + myArray[i];
+    sum = sum + myArray[i]
   }
-  return sum;
+  return sum
 }
 
-console.log(adder([5, 2, 1, 7]));
-console.log(adder([1]));
-console.log(adder([0]));
+console.log(adder([5, 2, 1, 7]))
+console.log(adder([1]))
+console.log(adder([0]))

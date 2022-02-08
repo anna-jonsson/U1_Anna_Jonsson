@@ -16,35 +16,28 @@ VIDEO:  Record a video where you explain the two different ways (see above) of c
 */
 
 function createNumberDiv () {
-        let e = document.createElement("div");
-        e.innerHTML = randomNumber(100);
-     
-        return e;
-     } 
-     
-     function randomNumber ( max ) {
-         return Math.floor( max * Math.random() );
-     }
+  let e = document.createElement('div')
+  e.innerHTML = randomNumber(100)
 
+  return e
+}
+
+function randomNumber (max) { 
+  return Math.floor(max * Math.random())
+}
 
 function gridMaker (gridContainer, R, C) {
-        gridContainer.style.gridTemplateColumns = `repeat(${C}, 1fr)`;
-        gridContainer.style.gridTemplateRows = `repeat(${R}, 1fr)`;
+  gridContainer.style.gridTemplateColumns = `repeat(${C}, 1fr)`
+  gridContainer.style.gridTemplateRows = `repeat(${R}, 1fr)`
 
-        // for (let c = 0; c < C; c++) {
-        //         for (let r = 0; r < R; r++) {
-        //                 gridContainer.appendChild(createNumberDiv());
-        //         }
-        // }
+  for (let c = 0; c < C; c++) {
+          for (let r = 0; r < R; r++) {
+                  gridContainer.appendChild(createNumberDiv());
+          }
+  }
 
-        let rowCol = R*C; 
-        for (let i = 0; i < rowCol; i++) {
-                gridContainer.appendChild(createNumberDiv());
-        }
-    }
-
-//     gridMaker (document.querySelector("#grid"), 10, 10);
-    
-// document.querySelector("button").addEventListener ("click", function () {
-//         gridMaker( document.querySelector("#grid"), document.querySelector("#inputRows").value, document.querySelector("#inputCols").value);
-//     })
+  let rowCol = R * C
+  for (let i = 0; i < rowCol; i++) {
+    gridContainer.appendChild(createNumberDiv())
+  }
+}
