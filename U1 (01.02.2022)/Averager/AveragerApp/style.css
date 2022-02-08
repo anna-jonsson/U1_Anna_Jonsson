@@ -101,3 +101,30 @@ label {
 #average span {
   font-weight: bolder;
 }
+
+h1 {
+  margin: 0;
+  padding-top: 2vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 70px;
+  font-family: 'Fugaz One', cursive;
+  color: rgb(67, 85, 87);
+  transition: 1s;
+}
+
+h1:hover {
+  color: rgb(127, 161, 163);
+}
+
+img {
+  height: 50px;
+  padding-right: 2vh;
+  transition: 1s;
+}
+
+img:hover {
+  transform: rotate(180deg);
+  margin-right: 10px;
+}
